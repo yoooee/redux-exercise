@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { TodoDashboardComponent } from './todo-dashboard/todo-dashboard.component';
 import { TodoListComponent } from './todo-list/todo-list.component';
 import { TodoService } from "./todo.service";
+import { NgReduxModule, NgRedux } from '@angular-redux/store';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { TodoService } from "./todo.service";
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    NgReduxModule
   ],
   providers: [TodoService],
   bootstrap: [AppComponent]
