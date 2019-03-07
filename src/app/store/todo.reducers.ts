@@ -11,14 +11,17 @@ export const initialState = {
 }
 
 
-export function todoListReducer(state = initialState, action: TodoListActions.TodoListActions) {
+export function todoListReducer(state = initialState, action) {
   switch (action.type) {
     case TodoListActions.ADD_TODO:
-      return state;
-      //return {
-        //...state,
-        //todoList: [...state.todoList, action.payload]
-      //};
+      return {
+        ...state,
+        todoList: [
+          ...state.todoList,
+          action
+        ]
+      };
+
     default:
       return state;
   }
