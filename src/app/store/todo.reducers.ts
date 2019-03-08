@@ -14,11 +14,13 @@ export const initialState = {
 export function todoListReducer(state = initialState, action) {
   switch (action.type) {
     case TodoListActions.ADD_TODO:
+      const id = state.todoList.length + 1;
+
       return {
         ...state,
         todoList: [
-          ...state.todoList,
-          action
+            ...state.todoList,
+          {id: id, ...action}
         ]
       };
 
