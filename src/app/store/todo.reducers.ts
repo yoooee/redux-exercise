@@ -24,6 +24,16 @@ export function todoListReducer(state = initialState, action) {
         ]
       };
 
+    case TodoListActions.REMOVE_TODO:
+      const currentTodos = [...state.todoList];
+
+      return {
+        ...state,
+        todoList: [
+          ...currentTodos.filter((todo) => todo.id !== action.id)
+        ]
+      };
+
     default:
       return state;
   }
