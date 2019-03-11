@@ -20,7 +20,7 @@ export function todoListReducer(state = initialState, action) {
         ...state,
         todoList: [
           ...state.todoList,
-          {id: id, ...action}
+          {id: id, isComplete: false, ...action}
         ]
       };
 
@@ -32,6 +32,13 @@ export function todoListReducer(state = initialState, action) {
         todoList: [
           ...currentTodos.filter((todo) => todo.id !== action.id)
         ]
+      };
+
+    case TodoListActions.CLEAR_TODOS:
+
+      return {
+        ...state,
+        todoList: []
       };
 
     default:

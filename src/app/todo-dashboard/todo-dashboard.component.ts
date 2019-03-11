@@ -1,4 +1,8 @@
 import { Component } from '@angular/core';
+import { NgRedux } from '@angular-redux/store';
+import { AppState } from "../store/todo.reducers";
+import { CLEAR_TODOS } from '../store/todo.actions';
+import { Observable } from 'rxjs';
 import { TodoService } from "../todo.service";
 
 @Component({
@@ -10,7 +14,7 @@ export class TodoDashboardComponent {
   todos: number;
   lastUpdate;
 
-  constructor(private service: TodoService) {
+  constructor(private service: TodoService, private ngRedux: NgRedux<AppState>) {
     this.todos = service.getTodos().length;
 
     service.todoAdded.subscribe(() => {
@@ -34,6 +38,7 @@ export class TodoDashboardComponent {
   }
 
   clearTodos() {
+    this.ngRedux.dispatch({ type: CLEAR_TODOS });
     this.service.clearTodos();
   };
 }

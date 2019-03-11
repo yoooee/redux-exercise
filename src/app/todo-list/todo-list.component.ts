@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { TodoService } from "../todo.service";
 import { NgRedux } from "@angular-redux/store";
 import { AppState } from "../store/todo.reducers";
-import { ADD_TODO, REMOVE_TODO } from "../store/todo.actions";
+import { ADD_TODO, REMOVE_TODO, TOGGLE_TODO } from "../store/todo.actions";
 import { Observable } from "rxjs";
 import { Todo } from "../todo.model";
 
@@ -33,7 +33,6 @@ export class TodoListComponent implements OnInit {
   }
 
   removeTodo(todo) {
-    console.log('removing this todo', todo);
     this.ngRedux.dispatch({ type: REMOVE_TODO, id: todo.id });
   }
 }
