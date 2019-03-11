@@ -29,7 +29,8 @@ export class TodoListComponent implements OnInit {
   }
 
   toggleTodo(todo) {
-    this.service.toggleTodo(todo);
+    this.ngRedux.dispatch({ type: TOGGLE_TODO, id: todo.id });
+    //this.service.toggleTodo(todo);
   }
 
   removeTodo(todo) {

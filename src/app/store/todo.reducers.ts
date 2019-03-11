@@ -12,6 +12,7 @@ export const initialState = {
 
 
 export function todoListReducer(state = initialState, action) {
+
   switch (action.type) {
     case TodoListActions.ADD_TODO:
       const id = state.todoList.length;
@@ -20,17 +21,31 @@ export function todoListReducer(state = initialState, action) {
         ...state,
         todoList: [
           ...state.todoList,
-          {id: id, isComplete: false, ...action}
+          {id: id, isCompleted: false, ...action}
         ]
       };
 
-    case TodoListActions.REMOVE_TODO:
-      const currentTodos = [...state.todoList];
+    case TodoListActions.TOGGLE_TODO:
 
       return {
         ...state,
         todoList: [
-          ...currentTodos.filter((todo) => todo.id !== action.id)
+          ...state.todoList.map(todo => {
+            if(todo.id === action.id)
+              return {...todo, isCompleted: !todo.isCompleted};
+            else
+              return todo;
+          })
+        ]
+      };
+
+
+    case TodoListActions.REMOVE_TODO:
+
+      return {
+        ...state,
+        todoList: [
+          ...state.todoList.filter((todo) => todo.id !== action.id)
         ]
       };
 
@@ -43,6 +58,5 @@ export function todoListReducer(state = initialState, action) {
 
     default:
       return state;
-  }
-
+  };
 }
